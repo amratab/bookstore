@@ -1,0 +1,19 @@
+.modal.fade{:id => "signinModal",:tabindex=>"-1", :role=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true" }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{:type=>"button", "data-dismiss"=>"modal", "aria-label"=>"Close"}
+          %span{"aria-hidden"=>"true"} x
+        %h4.modal-title Sign in
+      %form#signupForm
+        .modal-body
+          .input-group
+            %input.form-control{"aria-describedby" => "basic-addon2", :placeholder => "Email", :type => "text",:name=>"email"}/
+            %span#basic-addon2.input-group-addon @example.com
+          %br
+          .input-group
+            %span#basic-addon1.input-group-addon @
+            %input.form-control{"aria-describedby" => "basic-addon1", :placeholder => "Password", :type => "password", :name=>"password"}/
+        .modal-footer
+          %button.btn.btn-default{:type=>"button","data-dismiss"=>"modal"} Close
+          %button#signinBtn.btn.btn-primary{:type=>"button"} Sign in

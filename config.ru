@@ -8,6 +8,8 @@ require "haml"
 
 require 'active_record'
 
+require 'mysql2'
+
 require "./app"
 
 set :run, false
@@ -18,7 +20,7 @@ run Sinatra::Application
 
 ActiveRecord::Base.establish_connection(
   :adapter  => "mysql2",
-  :host     => "host",
+  :host     => "localhost",
   :username => "user",
   :password => "password",
   :database => "bookstoredb"
