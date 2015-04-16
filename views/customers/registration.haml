@@ -24,4 +24,5 @@
             %input.form-control{"aria-describedby" => "basic-addon1", :placeholder => "Password", :type => "password", :name=>"password"}/
         .modal-footer
           %button.btn.btn-default{:type=>"button","data-dismiss"=>"modal"} Close
-          %button#saveBtn.btn.btn-primary{:type=>"button"} Save changes
+          %button#saveBtn.btn.btn-primary{:type=>"submit"} Save changes
+          %span#statusSpan

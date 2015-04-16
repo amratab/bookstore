@@ -2,8 +2,12 @@
   %h1 Hello World
 
   %p Your app is up and running!
-  
+  %a{:href=>"/product/new"} New
   -@products.each do |product|
     #product
       %p
       = product.name  
+      = product.price
+      %a{:href=>"/product/#{product.id}/show"} Show
+      %a{:href=>"/product/#{product.id}/edit"} Edit
+      %a{:href=>"/product/#{product.id}/buy"} Buy 

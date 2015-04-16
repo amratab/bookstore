@@ -1,0 +1,20 @@
+%h2 New Product
+%form#newProductForm{:action => "/product/create"}
+  .input-group
+    %span#basic-addon1.input-group-addon
+    %input.form-control{"aria-describedby" => "basic-addon1", :placeholder => "Name", :type => "text", :name=>"name"}/
+    %br
+  .input-group
+    %span#basic-addon1.input-group-addon
+    %input.form-control{"aria-describedby" => "basic-addon1", :placeholder => "Price", :type => "text", :name => "price"}/
+    %br
+  .input-group
+    %textarea.form-control{"aria-describedby" => "basic-addon2", :placeholder => "Description", :type => "text",:name=>"description"} 
+    %br
+  .input-group
+    %select{:name=>"status"}
+      %option{ :value => "1"} Enabled
+      %option{ :value => "0"} Disabled
+  %button.btn.btn-default{:type=>"button","data-dismiss"=>"modal"} Close
+  %button#saveBtn.btn.btn-primary{:type=>"submit"} Save changes
+  %span#prodStatus

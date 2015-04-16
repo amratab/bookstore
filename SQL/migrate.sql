@@ -7,7 +7,7 @@ CREATE DATABASE bookstoredb;
 
 CREATE TABLE products (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id),  name VARCHAR(25), price DOUBLE(16,2), status INT, description TEXT);
 
-CREATE TABLE customers (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), firstname VARCHAR(25), lastname VARCHAR(25), email VARCHAR(50), password VARCHAR(50));
+CREATE TABLE customers (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), firstname VARCHAR(25), lastname VARCHAR(25), email VARCHAR(50), UNIQUE KEY(email), password VARCHAR(50));
 
 CREATE TABLE customer_orders (id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), order_no VARCHAR(25), customer_id INT NOT NULL, total DOUBLE(16,2), date DATE, FOREIGN KEY(customer_id) REFERENCES customer(id));
 

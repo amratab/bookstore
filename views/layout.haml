@@ -35,7 +35,7 @@
                     %a{:href => "/login/form"} Login
                   %li.divider
                   %li
-                    %a{:href => "/logout"} Logout
+                    %a{:href => "#", :id => "signoutBtn"} Logout
           - else
             %ul.nav.navbar-nav.navbar-right
               %li 
@@ -51,5 +51,7 @@
         = haml :'customers/signin', :layout => false
     / jQuery (necessary for Bootstrap's JavaScript plugins)
     %script{:src => "/javascript/jquery-1.11.2.min.js"}
+    %script{:src => "/javascript/customer.js"}
+    %script{:src => "/javascript/product.js"}
     / Include all compiled plugins (below), or include individual files as needed
     %script{:src => "/bootstrap/js/bootstrap.min.js"}
