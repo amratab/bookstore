@@ -15,6 +15,33 @@ def store_user_in_session(id)
   session[:customer_id] = id
 end
 
+def add_to_cart(params)
+  if session[:cart].nil?
+    session[:cart] = []
+  end
+  params[:id] = params[:id].to_i
+  product_hash = session[:cart].select{|item| item[:id] == params[:id]}
+  qty = 1
+  unless product_hash.blank?
+    product_hash = product_hash.first
+    qty = product_hash[:qty]+1
+    session[:cart].delete(product_hash)
+  end
+  session[:cart].push({
+    :id => params[:id],
+    :qty => qty
+  })
+end
+
+def update_cart(params)
+  product_hash = session[:cart].select{|item| item[:id] == params[:id].to_i}.first
+  session[:cart].delete(product_hash)
+  session[:cart].push({
+    :id => params[:id].to_i,
+    :qty => params[:qty].to_i
+  })
+end
+
 get "/" do
   page = @params[:page]
   @products = Product.list(page)
@@ -72,6 +99,23 @@ post "/product/create" do
     content_type :json
     { :result => 'failure',:message => result[:message]}.to_json
   end 
+end
+
+post "/product/:id/addtocart" do
+  add_to_cart(params)
+  content_type :json
+  { :result => 'success'}.to_json
+end
+
+get "/cart" do
+  @cart_items = Product.populate_cart_items(session[:cart])
+  haml :"customers/cart"
+end
+
+post "/cart/update" do
+  update_cart(params)
+  content_type :json
+  { :result => 'success'}.to_json
 end
 
 get "/product/:id/show" do

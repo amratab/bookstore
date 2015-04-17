@@ -29,4 +29,26 @@ class Product < ActiveRecord::Base
       return {:success => false, :message => e.message}
     end
   end
+  
+  def self.populate_cart_items(items)
+    if items.nil?
+      return []
+    else
+      populated_cart = []
+      items.each do |item|
+        product = find_product(item[:id])
+        price = product.price
+        qty = item[:qty].to_f
+        populated_cart.push({
+          :id => product.id,
+          :name => product.name,
+          :unit_price => product.price,
+          :qty => qty,
+          :total_price => product.price*qty
+        })
+      end
+      populated_cart
+    end
+  end
+  
 end

@@ -1,0 +1,23 @@
+#div
+  %h2 Your shopping cart
+  - @cart_items.each do |cart_item|
+    .panel.panel-default
+      .panel-body
+        %p 
+        = 'Name: ' + cart_item[:name]
+        %p 
+          Qty:
+          %input{:type=>"text", :value => cart_item[:qty],:class=>"form-control", :placeholder=>"Qty",:"aria-describedby"=>"basic-addon2", :id=>"qty-#{cart_item[:id]}"}
+          %input{:type=>"button", :class=>"update_qty", :id=>"update-#{cart_item[:id]}", :value => "Update"}
+          %span{:id => "status-#{cart_item[:id]}"}
+        %p
+          Unit Price:
+          %span{:id =>"unit_price-#{cart_item[:id]}"} 
+            = cart_item[:unit_price].to_s
+        %p 
+          Total Price: 
+          %span{:id=>"total_price-#{cart_item[:id]}", :class=>"total_price"}
+            = cart_item[:total_price].to_s
+  %p
+    Total Amount:
+    %span#total_amount

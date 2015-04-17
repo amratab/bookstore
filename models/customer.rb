@@ -30,4 +30,12 @@ class Customer < ActiveRecord::Base
       return {:success => false, :message => e.message}  
     end
   end
+  
+  def add_to_cart()
+    order = self.customer_orders.pending.first
+    if order.nil?
+      order = self.customer_orders.create!(:date => Date.today)
+    end
+    order.create_order_items(params)
+  end
 end

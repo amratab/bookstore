@@ -28,11 +28,11 @@
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  Amrata
+                  = @current_user.firstname
                   %b.caret
                 %ul.dropdown-menu
                   %li
-                    %a{:href => "/login/form"} Login
+                    %a{:href => "/cart"} Cart
                   %li.divider
                   %li
                     %a{:href => "#", :id => "signoutBtn"} Logout
@@ -53,5 +53,6 @@
     %script{:src => "/javascript/jquery-1.11.2.min.js"}
     %script{:src => "/javascript/customer.js"}
     %script{:src => "/javascript/product.js"}
+    %script{:src => "/javascript/cart.js"}  
     / Include all compiled plugins (below), or include individual files as needed
     %script{:src => "/bootstrap/js/bootstrap.min.js"}
