@@ -1,7 +1,7 @@
 #div
   %h2 Your order details
   Address:
-  %input{:type=>"text", :class=>"form-control", :placeholder=>"Address",:"aria-describedby"=>"basic-addon2"}
+  %textarea{:type=>"text", :class=>"form-control", :placeholder=>"Address",:"aria-describedby"=>"basic-addon2"}
   %h2 Review your order
   = haml :'customer_orders/order_details',:layout => false, @order => @order
   %br

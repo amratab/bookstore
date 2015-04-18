@@ -10,6 +10,7 @@ Product functionalities:
   i) View details.
   ii) Edit the product(Only for logged in user)
   iii_ Add item to cart(Only for logged in user)
+  iv) Add a new product.(Only for logged in user)
 
 Placing an order:-
 1)To place an order, first add the items to your cart.
@@ -30,4 +31,11 @@ Features:-
 
 Additions:-
 1) Added a new field to order table called status. When the order is created, the status is PENDING and after payment success/failure it gets updated according to the result i.e. success or failure.
- 
+
+Improvements required but not implemented because of time constraint:-
+1) Ui improvements of course.
+2) Products index could use pagination.
+3) Add to cart should be allowed without login and session data should be transferred on login. 
+4) Products new/edit should be allowed only for admin users. Currently there is no separation on type of users.
+5) Address is not getting saved in db. Its dummy for now. 
+6) There are many details missing like currency, tax levied etc. 
