@@ -1,7 +1,6 @@
 #some
-  %h1 Hello World
-
-  %p Your app is up and running!
+  %h1 Books
+  
   - if @current_user
     %a{:href=>"/product/new"} New
   -@products.each do |product|
@@ -9,8 +8,8 @@
       %p
       = product.name  
       = product.price
+      %a{:href=>"/product/#{product.id}/show"} Show
       - if @current_user
-        %a{:href=>"/product/#{product.id}/show"} Show
         %a{:href=>"/product/#{product.id}/edit"} Edit
         %a.add_cart{:href=>"/product/#{product.id}/addtocart"} Add to cart 
         %span#addCartStatus

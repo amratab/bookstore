@@ -22,8 +22,6 @@
           %a.navbar-brand{:href => "/"} Bookstore
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
-            %li
-              %a{:href => "/secure/place"} Secret
           - if @current_user
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
@@ -33,6 +31,8 @@
                 %ul.dropdown-menu
                   %li
                     %a{:href => "/cart"} Cart
+                  %li
+                    %a{:href => "/orders"} My orders
                   %li.divider
                   %li
                     %a{:href => "#", :id => "signoutBtn"} Logout

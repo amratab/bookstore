@@ -1,0 +1,11 @@
+#div
+  %h2 Your orders
+  - @orders.each do |order|
+    %span
+      Order Id :
+      = order.order_no
+    %span
+      Total Amount:
+      = order.total
+    %a{:href=>"/order/#{order.id}/show"} Show details 
+    %br

@@ -1,6 +1,8 @@
+require_relative "customer_order"
 class Customer < ActiveRecord::Base
   
-  has_many :customer_orders
+  has_many :customer_orders, :foreign_key => "customer_id", :class_name => "CustomerOrder"
+  validates_uniqueness_of :email
   
   def self.get( id )
     Customer.find(id)
@@ -31,11 +33,18 @@ class Customer < ActiveRecord::Base
     end
   end
   
-  def add_to_cart()
-    order = self.customer_orders.pending.first
-    if order.nil?
-      order = self.customer_orders.create!(:date => Date.today)
-    end
-    order.create_order_items(params)
+  def place_order(cart)
+    order_no = "BJK-"+Time.now.to_i.to_s
+    puts "******************************"
+    puts CustomerOrder.count
+    order = self.customer_orders.create!(
+    :date => Date.today,
+    :order_no => order_no,
+    :total => Product.get_total_amount(cart)
+    )
+    order.create_order_lines(cart)
+    order
   end
+  
+  
 end

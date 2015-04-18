@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  belongs_to :order_line
+  has_many :order_lines, :foreign_key => "product_id", :class_name => "OrderLine"
   
   def self.list( page)
     Product.all
@@ -49,6 +49,12 @@ class Product < ActiveRecord::Base
       end
       populated_cart
     end
+  end
+  
+  def self.get_total_amount(cart)
+    cart = populate_cart_items(cart)
+    prices = cart.map{|item| item[:total_price]}
+    prices.inject{|sum,item| sum+item}
   end
   
 end

@@ -1,0 +1,11 @@
+#div
+  %h2 Your order details
+  Address:
+  %input{:type=>"text", :class=>"form-control", :placeholder=>"Address",:"aria-describedby"=>"basic-addon2"}
+  %h2 Review your order
+  = haml :'customer_orders/order_details',:layout => false, @order => @order
+  %br
+  %form{:action=>"http://localhost:9001/payment", :method=>"POST"}
+    %input{:type=>"hidden", :value=>"#{@order.total}", :name=>"amount"}
+    %input{:type=>"hidden", :value=>"#{@order.order_no}", :name=>"order_id"}
+    %input{:type=>"submit", :class => "btn btn-primary", :value => "Place order"}

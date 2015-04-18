@@ -1,0 +1,26 @@
+- @order.order_lines.each do |item|
+  .panel.panel-default
+    .panel-body
+      %p 
+      = 'Name: ' + item.product.name
+      %p 
+        Qty:
+        %span
+          = item.qty.to_s  
+      %p
+        Unit Price:
+        %span
+          = item.unit_price.to_s
+      %p 
+        Total Price: 
+        %span
+          = item.total_price.to_s
+%p
+  Placed on:
+  %span
+    = @order.date
+  %br
+  Total Amount:
+  %span
+    = @order.total
+  %br

@@ -1,4 +1,5 @@
+require_relative "product"
 class OrderLine < ActiveRecord::Base
   belongs_to :order
-  has_one :product
+  belongs_to :product
 end

@@ -1,0 +1,5 @@
+#div
+  %h2 
+    = "Your order " + @order.order_no
+  = haml :'customer_orders/order_details',:layout => false, @order => @order
+  = " Status:  " + @order.status 

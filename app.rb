@@ -77,6 +77,39 @@ post "/logout" do
   redirect "/" 
 end
 
+# Cart urls
+post "/product/:id/addtocart" do
+  add_to_cart(params)
+  content_type :json
+  { :result => 'success'}.to_json
+end
+
+get "/cart" do
+  @cart_items = Product.populate_cart_items(session[:cart])
+  haml :"customers/cart"
+end
+
+post "/cart/update" do
+  update_cart(params)
+  content_type :json
+  { :result => 'success'}.to_json
+end
+
+#Product urls
+get "/product/:id/show" do
+  @product = Product.find_product(params[:id])
+  haml :"products/show"
+end
+
+get "/product/new" do
+  haml :"products/new"
+end
+
+get "/product/:id/edit" do
+  @product = Product.find_product(params[:id])
+  haml :"products/edit"
+end
+
 post "/product/:id/update" do
   result = Product.update_product(params)
   if result[:success]
@@ -101,38 +134,28 @@ post "/product/create" do
   end 
 end
 
-post "/product/:id/addtocart" do
-  add_to_cart(params)
-  content_type :json
-  { :result => 'success'}.to_json
-end
-
-get "/cart" do
-  @cart_items = Product.populate_cart_items(session[:cart])
-  haml :"customers/cart"
-end
-
-post "/cart/update" do
-  update_cart(params)
-  content_type :json
-  { :result => 'success'}.to_json
-end
-
-get "/product/:id/show" do
-  @product = Product.find_product(params[:id])
-  haml :"products/show"
-end
-
-get "/product/new" do
-  haml :"products/new"
-end
-
-get "/product/:id/edit" do
-  @product = Product.find_product(params[:id])
-  haml :"products/edit"
+#Order urls
+ 
+post "/placeorder" do
+  @order = @current_user.place_order(session[:cart])
+  session[:cart] = nil
+  haml :"customer_orders/buy"
 end
 
 
-get "/placeorder" do
-  
+post "/pgcallback" do
+  @result = params[:result]
+  @order_no = params[:order_id]
+  @order = CustomerOrder.update_status(@order_no, @result)
+  haml :"customer_orders/result"
+end
+
+get "/orders" do
+  @orders = @current_user.customer_orders.order(date: :desc)
+  haml :"customer_orders/index"
+end
+
+get "/order/:id/show" do
+  @order = CustomerOrder.find(params[:id])
+  haml :"customer_orders/show"
 end
