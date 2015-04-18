@@ -1,4 +1,6 @@
-This is a e-commerce website for selling books:
+This is a e-commerce website for selling books "bookstore":
+Used : javascript, ruby, sinatra
+
 User functionalities:
 1) Register using sign up link on the first page.(located in upper right hand menu)
 2) Once registered, sign in to use the website.
@@ -28,6 +30,7 @@ Payment gateway is a separate ruby-sinatra project which should be run on port 9
 Features:-
 1) Current user and cart are maintained in session.
 2) Email is unique for all users.
+3) User can edit quantity of items in cart and view the amount changes simultaneously.
 
 Additions:-
 1) Added a new field to order table called status. When the order is created, the status is PENDING and after payment success/failure it gets updated according to the result i.e. success or failure.
