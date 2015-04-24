@@ -1,5 +1,5 @@
 $(function() {
-	$("#newProductForm").on("submit", function() {
+	$("#newProductForm").on("submit", function(event) {
 		event.preventDefault();
 		$.ajax({
 			type : "POST",
@@ -19,7 +19,7 @@ $(function() {
 		});
 	});
 	
-	$("#editProductForm").on("submit", function() {
+	$("#editProductForm").on("submit", function(event) {
 		event.preventDefault();
 		$.ajax({
 			type : "POST",

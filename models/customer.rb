@@ -35,8 +35,6 @@ class Customer < ActiveRecord::Base
   
   def place_order(cart)
     order_no = "BJK-"+Time.now.to_i.to_s
-    puts "******************************"
-    puts CustomerOrder.count
     order = self.customer_orders.create!(
     :date => Date.today,
     :order_no => order_no,

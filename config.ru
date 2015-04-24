@@ -26,7 +26,4 @@ ActiveRecord::Base.establish_connection(
   :database => "bookstoredb"
 )
 
-use Rack::Session::Cookie , :secret => "82e042cd6fde2bf1764f777236db799e"
-use Rack::Session::Pool, :expire_after => 2592000
-
- enable :sessions
+enable :sessions

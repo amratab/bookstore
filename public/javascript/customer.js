@@ -1,5 +1,6 @@
 $(function () {
-	
+	$("#signupForm")[0].reset();
+	$("#signinForm")[0].reset();
 	$("#signupForm").on("submit", function(event) {
 		event.preventDefault();
 		$.ajax({
@@ -9,6 +10,7 @@ $(function () {
 			success : function(response) {
 				if (response.result == "success") {
 					$("#signupModal").modal('hide');
+					$("#signupForm")[0].reset();
 					alert("User created successfully! Please sign in to continue.");
 				} else {
 					$("#statusSpan").html(response.message);
@@ -28,6 +30,7 @@ $(function () {
 			data: $(this).serialize(),
 			success : function(response) {
 				if (response.result == "success") {
+					$("#signinForm")[0].reset();
 					$("#signinModal").modal('hide');
 					window.location = "/";
 				} else {

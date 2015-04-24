@@ -5,7 +5,6 @@ set :haml, :format => :html5
 
 before do
   current_user_id = session[:customer_id]
-  puts current_user_id
   unless current_user_id.blank?
     @current_user = Customer.get(current_user_id) 
   end
@@ -113,7 +112,6 @@ end
 post "/product/:id/update" do
   result = Product.update_product(params)
   if result[:success]
-    store_user_in_session(result[:id])
     content_type :json
     { :result => 'success'}.to_json
   else
@@ -125,7 +123,6 @@ end
 post "/product/create" do
   result = Product.create_product(params)
   if result[:success]
-    store_user_in_session(result[:id])
     content_type :json
     { :result => 'success'}.to_json
   else

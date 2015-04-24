@@ -3,13 +3,16 @@
   
   - if @current_user
     %a{:href=>"/product/new"} New
-  -@products.each do |product|
-    #product
-      %p
-      = product.name  
-      = product.price
-      %a{:href=>"/product/#{product.id}/show"} Show
-      - if @current_user
-        %a{:href=>"/product/#{product.id}/edit"} Edit
-        %a.add_cart{:href=>"/product/#{product.id}/addtocart"} Add to cart 
-        %span#addCartStatus
+  %table.table
+    -@products.each do |product|
+      %tr
+        %td
+          = product.name
+        %td  
+          = product.price
+        %td
+          %a{:href=>"/product/#{product.id}/show"} Show
+          - if @current_user
+            %a{:href=>"/product/#{product.id}/edit"} Edit
+            %a.add_cart{:href=>"/product/#{product.id}/addtocart"} Add to cart 
+            %span#addCartStatus
